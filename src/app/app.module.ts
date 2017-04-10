@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import {HeroDashboardModule} from "./hero-dashboard/hero-dashboard.module";
+import {AppRouting} from "./app.routing";
+import {HeroDetailModule} from "./hero-detail/hero-detail.module";
+import {HeroesModule} from "./heroes/heroes.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +16,11 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRouting,
+    HeroDashboardModule,
+    HeroDetailModule,
+    HeroesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
