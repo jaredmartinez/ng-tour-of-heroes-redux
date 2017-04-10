@@ -12,7 +12,6 @@ export class HeroService {
   constructor(private http: Http) { }
 
   getHeroes(): Observable<Hero[]> {
-    console.log('getting heroes');
     return this.http.get(this.heroesUrl)
       .map(res => res.json().data || []);
   }

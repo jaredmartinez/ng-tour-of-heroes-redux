@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div *ngIf="hero">
+      <h2>
+        {{hero.name | uppercase}} is my hero
+      </h2>
+      <button (click)="goToDetail()">View Details</button>
+    </div>
+
+  </div>
+</div>

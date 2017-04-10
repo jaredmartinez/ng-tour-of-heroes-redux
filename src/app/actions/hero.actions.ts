@@ -29,37 +29,37 @@ export const ActionTypes = {
  * See Discriminated Unions: https://www.typescriptlang.org/docs/handbook/advanced-types.html#discriminated-unions
  */
 export class GetAllAction implements Action {
-  type = ActionTypes.GET_ALL;
+  readonly type = ActionTypes.GET_ALL;
 
   constructor(public payload: any) { }
 }
 
 export class GetAllSuccessAction implements Action {
-  type = ActionTypes.GET_ALL_SUCCESS;
+  readonly type = ActionTypes.GET_ALL_SUCCESS;
 
   constructor(public payload: Hero[]) { }
 }
 
 export class AddAction implements Action {
-  type = ActionTypes.ADD;
+  readonly type = ActionTypes.ADD;
 
   constructor(public payload: String) { }
 }
 
 export class DeleteAction implements Action {
-  type = ActionTypes.DELETE;
+  readonly type = ActionTypes.DELETE;
 
   constructor(public payload: number) { }
 }
 
 export class SearchAction implements Action {
-  type = ActionTypes.SEARCH;
+  readonly type = ActionTypes.SEARCH;
 
   constructor(public payload: String) { }
 }
 
 export class SelectAction implements Action {
-  type = ActionTypes.SELECT;
+  readonly type = ActionTypes.SELECT;
 
   constructor(public payload: Hero) { }
 }
@@ -68,7 +68,7 @@ export class SelectAction implements Action {
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
  */
-export type Actions
+export type All
   = GetAllAction
   | GetAllSuccessAction
   | AddAction

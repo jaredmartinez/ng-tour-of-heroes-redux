@@ -1,65 +1,60 @@
 import {Hero} from "../core/model/hero.model";
-import * as hero from '../actions/hero.actions';
+import * as HeroActions from '../actions/hero.actions';
 
 export interface State {
   heroes: Hero[];
-  loadingHeroes: boolean;
+  isLoadingHeroes: boolean;
   selectedHero: Hero | null;
-};
+}
 
-export const initialState: State = {
+const initialState: State = {
   heroes: [],
-  loadingHeroes: false,
+  isLoadingHeroes: false,
   selectedHero: null
 };
 
-export function reducer(state = initialState, action: hero.Actions): State {
+export function reducer(state = initialState, action: HeroActions.All): State {
 
   switch (action.type) {
 
-    case hero.ActionTypes.GET_ALL: {
-      return Object.assign({}, state, {
-        heroes: state.heroes,
-        loadingHeroes: true,
-        selectedHero: state.selectedHero
-      });
+    case HeroActions.ActionTypes.GET_ALL: {
+      return {
+        ...state,
+        isLoadingHeroes: true
+      };
     }
 
-    case hero.ActionTypes.GET_ALL_SUCCESS: {
+    case HeroActions.ActionTypes.GET_ALL_SUCCESS: {
       const heroes = action.payload;
-      console.log('const', heroes);
 
-      return Object.assign({}, state, {
+      return {
+        ...state,
         heroes: heroes,
-        loadingHeroes: false,
-        selectedHero: state.selectedHero
-      });
+        isLoadingHeroes: false
+      };
     }
 
-    case hero.ActionTypes.ADD: {
-      return Object.assign({}, state, {
-        heroes: state.heroes,
-        loadingHeroes: true,
+    case HeroActions.ActionTypes.ADD: {
+      return {
+        ...state,
         selectedHero: state.selectedHero
-      });
+      };
     }
 
-    case hero.ActionTypes.DELETE: {
-      return Object.assign({}, state, {
-        heroes: state.heroes,
-        loadingHeroes: true,
-        selectedHero: state.selectedHero
-      });
+    case HeroActions.ActionTypes.DELETE: {
+      return {
+        ...state,
+        isLoadingHeroes: true
+      }
     }
 
-    case hero.ActionTypes.SELECT: {
+    case HeroActions.ActionTypes.SELECT: {
       const hero = action.payload;
 
-      return Object.assign({}, state, {
-        heroes: state.heroes,
-        loadingHeroes: state.loadingHeroes,
+      return {
+        ...state,
         selectedHero: hero
-      });
+      };
     }
 
     default: {
@@ -70,7 +65,7 @@ export function reducer(state = initialState, action: hero.Actions): State {
 
 }
 
-export const isHeroesLoading = (state: State) => state.loadingHeroes;
+export const isHeroesLoading = (state: State) => state.isLoadingHeroes;
 
 export const getAllHeroes = (state: State) => state.heroes;
 

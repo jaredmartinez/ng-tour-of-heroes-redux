@@ -1,6 +1,21 @@
-<h3>Top Heroes</h3>
-{{ heroesLoading$ | async }}
+<!--<h3>Top Heroes</h3>
+<div *ngIf="isLoadingHeroes | async">Loading...</div>
 <div class="grid grid-pad">
-  <hero-selector [heroes]="heroes$ | async"></hero-selector>
+  <hero-selector [heroes]="heroes | async"></hero-selector>
 </div>
-<hero-search></hero-search>
+<br/>-->
+<!--<hero-search></hero-search>-->
+
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div *ngIf="isLoadingHeroes | async">Loading...</div>
+
+
+    <hero-selector [heroes]="heroes | async"></hero-selector>
+
+    <hero-search></hero-search>
+
+  </div>
+</div>

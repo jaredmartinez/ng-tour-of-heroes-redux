@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from "@ngrx/store";
+import {Hero} from "../../core/model/hero.model";
+import {Observable} from "rxjs";
+import * as fromRoot from '../../app.reducer';
+import * as HeroActions from '../../actions/hero.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -7,12 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroesComponent implements OnInit {
 
-  heroes = [];
-  selectedHero;
+  heroes: Observable<Hero[]>;
 
-  constructor() { }
+  constructor(private store: Store<fromRoot.State>) {
+    this.heroes = this.store.select(fromRoot.selectHeroes);
+  }
 
   ngOnInit() {
+    this.store.dispatch(new HeroActions.GetAllAction(null))
   }
 
 }
