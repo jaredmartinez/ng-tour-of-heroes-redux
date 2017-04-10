@@ -1,0 +1,6 @@
+<h3>Top Heroes</h3>
+{{ heroesLoading$ | async }}
+<div class="grid grid-pad">
+  <hero-selector [heroes]="heroes$ | async"></hero-selector>
+</div>
+<hero-search></hero-search>

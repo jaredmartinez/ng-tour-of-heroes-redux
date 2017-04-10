@@ -4,10 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import {HeroDashboardModule} from "./hero-dashboard/hero-dashboard.module";
+import {HeroDashboardModule} from "./components/hero-dashboard/hero-dashboard.module";
 import {AppRouting} from "./app.routing";
-import {HeroDetailModule} from "./hero-detail/hero-detail.module";
-import {HeroesModule} from "./heroes/heroes.module";
+import {HeroDetailModule} from "./components/hero-detail/hero-detail.module";
+import {HeroesModule} from "./components/heroes/heroes.module";
+import { InMemoryDataService }  from './in-memory-data.service';
+import {InMemoryWebApiModule} from "angular-in-memory-web-api";
+import {CoreModule} from "./core/core.module";
+import {reducer} from "./app.reducer";
+import {StoreModule} from "@ngrx/store";
+import {EffectsModule} from "@ngrx/effects";
+import {HeroEffects} from "./effects/hero.effects";
 
 @NgModule({
   declarations: [
@@ -17,7 +24,11 @@ import {HeroesModule} from "./heroes/heroes.module";
     BrowserModule,
     FormsModule,
     HttpModule,
+    StoreModule.provideStore(reducer),
+    EffectsModule.run(HeroEffects),
+    CoreModule,
     AppRouting,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
     HeroDashboardModule,
     HeroDetailModule,
     HeroesModule
