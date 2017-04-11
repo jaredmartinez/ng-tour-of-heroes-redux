@@ -33,6 +33,10 @@ export function selectHeroes(state: State) {
   return state.hero.heroes;
 }
 
+export function selectHero(state: State) {
+  return state.hero.selectedHero;
+}
+
 export function selectIsLoadingHeroes(state: State) {
   return state.hero.isLoadingHeroes;
 }

@@ -17,10 +17,18 @@ export function reducer(state = initialState, action: HeroActions.All): State {
 
   switch (action.type) {
 
-    case HeroActions.ActionTypes.GET_ALL: {
+    case HeroActions.ActionTypes.GET: {
       return {
         ...state,
         isLoadingHeroes: true
+      };
+    }
+
+    case HeroActions.ActionTypes.GET_ALL: {
+      return {
+        ...state,
+        isLoadingHeroes: true,
+        heroes: []
       };
     }
 
@@ -37,23 +45,36 @@ export function reducer(state = initialState, action: HeroActions.All): State {
     case HeroActions.ActionTypes.ADD: {
       return {
         ...state,
-        selectedHero: state.selectedHero
+        isLoadingHeroes: false
       };
     }
 
     case HeroActions.ActionTypes.DELETE: {
       return {
         ...state,
-        isLoadingHeroes: true
+        isLoadingHeroes: false
+      }
+    }
+
+    case HeroActions.ActionTypes.DELETE_SUCCESS: {
+      return {
+        ...state,
+        isLoadingHeroes: false
       }
     }
 
     case HeroActions.ActionTypes.SELECT: {
-      const hero = action.payload;
+      const id = action.payload;
+      let selectedHero: Hero;
+      for(let hero of state.heroes) {
+        if(hero.id == id) {
+          selectedHero = hero;
+        }
+      }
 
       return {
         ...state,
-        selectedHero: hero
+        selectedHero: selectedHero
       };
     }
 

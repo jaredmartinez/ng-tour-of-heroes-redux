@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
+import {Store} from "@ngrx/store";
+import {Hero} from "../../core/model/hero.model";
+import * as fromRoot from '../../app.reducer';
+import * as HeroActions from '../../actions/hero.actions';
+import {Observable} from "rxjs";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-hero-detail',
@@ -7,9 +14,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroDetailComponent implements OnInit {
 
-  constructor() { }
+  hero: Observable<Hero>;
+
+  constructor(private store: Store<fromRoot.State>,
+              private _location: Location,
+              private _route: ActivatedRoute) {
+    this.store.select(fromRoot.selectHero);
+  }
+
 
   ngOnInit() {
+  }
+
+  saveHero() {
+
+  }
+
+  goBack(): void {
+    this._location.back();
   }
 
 }

@@ -6,9 +6,9 @@
 
         <label class="sr-only" for="exampleInputAmount">Hero</label>
         <div class="input-group">
-          <div class="input-group-addon">{{ hero.id }}</div>
-          <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount" [value]="hero.name" readonly>
-          <div class="input-group-btn"><button class="btn btn-danger">X</button></div>
+          <div class="input-group-btn"><button type="button" class="btn btn-primary" (click)="selectHero(hero.id)">{{ hero.id }}</button></div>
+          <input type="text" class="form-control" id="exampleInputAmount" [value]="hero.name" readonly>
+          <div class="input-group-btn"><button type="button" class="btn btn-danger" (click)="deleteHero(hero.id)">X</button></div>
         </div>
 
       </div>

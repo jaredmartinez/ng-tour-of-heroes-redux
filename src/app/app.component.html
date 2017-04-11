@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1>{{title}}</h1>
-      <nav>
-        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-        <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
-      </nav>
+      <h1 class="text-center">{{title}}</h1>
+      <tabset type="pills" [justified]="true">
+        <tab heading="Dashboard" (select)="navigateTo('/dashboard')" [active]="_router.url == '/dashboard'" routerLinkActive="active"></tab>
+        <tab heading="Heroes" (select)="navigateTo('/heroes')" [active]="_router.url == '/heroes'" routerLinkActive="active"></tab>
+      </tabset>
       <router-outlet></router-outlet>
     </div>
   </div>

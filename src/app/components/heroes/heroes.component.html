@@ -4,8 +4,8 @@
     <div class="form-inline">
       <h2>My Heroes</h2>
       <div>
-        <label>Hero name:</label> <input class="form-control input-sm" #heroName />
-        <button class="btn btn-sm btn-success" (click)="add(heroName.value); heroName.value=''">
+        <label>Hero name:</label> <input class="form-control input-sm" [(ngModel)]="heroName" />
+        <button class="btn btn-sm btn-success" (click)="addHero()" [disabled]="!heroName || heroName.length == 0">
           Add
         </button>
       </div>
@@ -16,6 +16,8 @@
 
 <div style="margin-top: 30px;"></div>
 
-<heroes-list [heroes]="heroes | async"></heroes-list>
+<div *ngIf="isLoadingHeroes | async">Loading...</div>
 
-<hero-selected [hero]="selectedHero"></hero-selected>
+<heroes-list [heroes]="heroes | async" (onSelect)="selectHero($event)" (onDelete)="deleteHero($event)"></heroes-list>
+
+<hero-selected [hero]="selectedHero | async"></hero-selected>

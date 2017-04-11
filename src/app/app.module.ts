@@ -16,6 +16,7 @@ import {reducers} from "./app.reducer";
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
 import {HeroEffects} from "./effects/hero.effects";
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {HeroEffects} from "./effects/hero.effects";
     AppRouting,
     HeroDashboardModule,
     HeroDetailModule,
-    HeroesModule
+    HeroesModule,
+    TabsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

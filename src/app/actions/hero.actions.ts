@@ -11,6 +11,7 @@ import {Hero} from "../core/model/hero.model";
  * action types in the application are unique.
  */
 export const ActionTypes = {
+  GET:           type('[Hero] Get Hero'),
   GET_ALL:           type('[Hero] Get All Heroes'),
   GET_ALL_SUCCESS:   type('[Hero] Get All Heroes Success'),
   ADD:               type('[Hero] Add Hero'),
@@ -28,6 +29,12 @@ export const ActionTypes = {
  *
  * See Discriminated Unions: https://www.typescriptlang.org/docs/handbook/advanced-types.html#discriminated-unions
  */
+export class GetAction implements Action {
+  readonly type = ActionTypes.GET;
+
+  constructor(public payload: number) { }
+}
+
 export class GetAllAction implements Action {
   readonly type = ActionTypes.GET_ALL;
 
@@ -43,13 +50,25 @@ export class GetAllSuccessAction implements Action {
 export class AddAction implements Action {
   readonly type = ActionTypes.ADD;
 
-  constructor(public payload: String) { }
+  constructor(public payload: String) {console.log(payload)}
+}
+
+export class AddSuccessAction implements Action {
+  readonly type = ActionTypes.ADD_SUCCESS;
+
+  constructor(public payload: any) { }
 }
 
 export class DeleteAction implements Action {
   readonly type = ActionTypes.DELETE;
 
   constructor(public payload: number) { }
+}
+
+export class DeleteSuccessAction implements Action {
+  readonly type = ActionTypes.DELETE_SUCCESS;
+
+  constructor(public payload: any) { }
 }
 
 export class SearchAction implements Action {
@@ -61,7 +80,7 @@ export class SearchAction implements Action {
 export class SelectAction implements Action {
   readonly type = ActionTypes.SELECT;
 
-  constructor(public payload: Hero) { }
+  constructor(public payload: number) { }
 }
 
 /**
@@ -70,8 +89,10 @@ export class SelectAction implements Action {
  */
 export type All
   = GetAllAction
+  | GetAction
   | GetAllSuccessAction
   | AddAction
   | DeleteAction
+  | DeleteSuccessAction
   | SearchAction
   | SelectAction;
